@@ -2,7 +2,7 @@
 
 ## Building
 
-1. Make sure `[go](https://golang.org)` is installed
+1. Make sure [`go`](https://golang.org) is installed
 1. From this directory, run `go build -o adventofcode2020 cmd/main.go`
 
 ## Running
