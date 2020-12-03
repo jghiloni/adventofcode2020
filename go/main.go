@@ -3,9 +3,12 @@ package adventofcode2020
 import (
 	"fmt"
 	"os"
+	"path"
 
 	"github.com/jghiloni/adventofcode2020/day1"
 	"github.com/jghiloni/adventofcode2020/day2"
+	"github.com/jghiloni/adventofcode2020/day3"
+	"github.com/jghiloni/adventofcode2020/errors"
 )
 
 // Main does the unit of work and can be tested
@@ -16,10 +19,11 @@ func Main(args []string) error {
 	commands := map[string]DailyExercise{
 		"day1": day1.Exercise{},
 		"day2": day2.Exercise{},
+		"day3": day3.Exercise{},
 	}
 
 	if len(args) < 3 {
-		return ErrUsage
+		return errors.ErrUsage
 	}
 
 	command, ok := commands[args[1]]
@@ -34,5 +38,15 @@ func Main(args []string) error {
 		method = command.Part2
 	}
 
-	return method(os.Stdin, os.Stdout)
+	input := os.Stdin
+	wd, _ := os.Getwd()
+	var err error
+	if _, err = os.Stat(path.Join(wd, "..", args[1], "input")); err == nil {
+		input, err = os.Open(path.Join(wd, "..", args[1], "input"))
+		if err != nil {
+			return err
+		}
+	}
+
+	return method(input, os.Stdout)
 }
