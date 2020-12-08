@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 )
 
 type Exercise struct{}
@@ -28,6 +27,7 @@ func (e Exercise) Part1(in io.Reader, out io.Writer) error {
 	accumulator, err = findOpcodeCycle(opcodes, accumulator, 0)
 	if errors.Is(err, errCycle) {
 		fmt.Fprintln(out, accumulator)
+		return nil
 	}
 	return err
 }
@@ -40,7 +40,6 @@ func (e Exercise) Part2(in io.Reader, out io.Writer) error {
 
 	for line := range codes {
 		if codes[line].name == "jmp" && codes[line].value < 0 {
-			log.Printf("changing line %d from jmp %d to nop", line, codes[line].value)
 			codes[line].name = "nop"
 
 			resetExecution(codes)
