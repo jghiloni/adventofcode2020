@@ -12,6 +12,7 @@ import (
 	"github.com/jghiloni/adventofcode2020/day5"
 	"github.com/jghiloni/adventofcode2020/day6"
 	"github.com/jghiloni/adventofcode2020/day7"
+	"github.com/jghiloni/adventofcode2020/day8"
 	"github.com/jghiloni/adventofcode2020/errors"
 )
 
@@ -28,6 +29,7 @@ func Main(args []string) error {
 		"day5": day5.Exercise{},
 		"day6": day6.Exercise{},
 		"day7": day7.Exercise{},
+		"day8": day8.Exercise{},
 	}
 
 	if len(args) < 3 {
