@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 )
 
 type Exercise struct{}
@@ -49,6 +50,7 @@ func (e Exercise) Part2(in io.Reader, out io.Writer) error {
 				continue
 			}
 
+			log.Println("fixed corrupt code on line", line)
 			if err == nil {
 				fmt.Fprintln(out, accumulator)
 				return nil
